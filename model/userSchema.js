@@ -15,6 +15,11 @@ const Schema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    profilepic: {
+        type: String,
+        required: true,
+        
+    },
     role: {
         type: String,
         required: true,

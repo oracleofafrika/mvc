@@ -1,15 +1,19 @@
 const express = require('express');
-const { SignUp } = require('../controller/userController');
-const { logIn } = require('../controller/userController');
+
 const Auth = require('../middleware/jwt');
-const { AllUsers } = require('../controller/userController');
+const { SignUp, logIn, AllUsers, forgotPassword, resetPassword } = require('../controller/userController');
+const upload = require('../middleware/multer')
+
+
 
 
 
 const router = express.Router();
 
-router.post('/signUp', SignUp)
+router.post('/signUp', upload.single('image'), SignUp)
 router.post('/Login', logIn)
 router.get('/get_all', Auth.adminAuthenticated, AllUsers)
+router.post('/forgotpass', forgotPassword)
+router.post('/resetpass/:token', resetPassword)
 
 module.exports = router;
